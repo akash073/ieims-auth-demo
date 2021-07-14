@@ -1,0 +1,25 @@
+.AuthContainer-main {
+    display: flex;
+    justify-content: center;
+    font-size: calc(10px + 1vmin);
+    padding: 10vmin 2rem;
+}
+
+.AuthContainer-token {
+    flex-grow: 2;
+    text-align: left;
+}
+
+.AuthContainer-action {
+    flex-grow: 1;
+}
+
+.AuthContainer-button {
+    padding: 1vmin 2vmin;
+}
+
+.AuthContainer-pre {
+    background-color: cornsilk;
+}
+
+
