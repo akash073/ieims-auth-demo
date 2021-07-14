@@ -13,6 +13,7 @@ const keycloakConfig = {
 function App() {
   const [keycloak, setKeycloak] = useState(null)
   const [auth, setAuth] = useState({})
+  const [profile, setProfile] = useState({})
 
   useEffect(() => {
     const kc = new Keycloak(keycloakConfig)
@@ -30,6 +31,10 @@ function App() {
         token: kc.tokenParsed,
         refreshToken: kc.refreshTokenParsed
       })
+
+      kc.loadUserProfile()
+        .then(prof => setProfile(prof))
+        .catch(error => console.log('Error loading user profile', error))
 
       kc.onAuthLogout = function () {
         console.log('Keycloak session logout detected')
@@ -58,7 +63,7 @@ function App() {
         <h1>Application 1</h1>
       </header>
 
-      <AuthContainer {...{...auth, login, logout}}/>
+      <AuthContainer {...{...auth, profile, login, logout}}/>
 
     </div>
   )

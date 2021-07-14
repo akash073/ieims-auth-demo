@@ -1,12 +1,19 @@
 import './AuthContainer.css'
 
-function AuthContainer({authenticated, token, refreshToken, login, logout}) {
+function AuthContainer({authenticated, token, refreshToken, profile, login, logout}) {
   return (
     <main className="AuthContainer-main">
       <div className="AuthContainer-token">
         {
           authenticated ?
             <>
+              <h3>Profile</h3>
+              <pre className="AuthContainer-pre">
+                <code>
+                  {JSON.stringify(profile, null, 2)}
+                </code>
+              </pre>
+
               <h3>Token</h3>
               <pre className="AuthContainer-pre">
                   <code>
