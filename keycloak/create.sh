@@ -9,6 +9,3 @@ docker run -p 8000:8080 -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin \
 	-e JAVA_OPTS_APPEND="-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realm-data -Dkeycloak.migration.realmName=$REALM_NAME" \
 	--name keycloak \
 	quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
-
-
-#	--mount type=bind,src="$(pwd)"/realm-export.json,dst=/tmp/realm-export.json,readonly \

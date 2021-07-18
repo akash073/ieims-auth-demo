@@ -1,6 +1,53 @@
 import './AuthContainer.css'
+import { get } from './api'
+import PermissionError from './PermissionError'
 
-function AuthContainer({authenticated, token, refreshToken, profile, login, logout}) {
+function AuthContainer({ authenticated, token, refreshToken, profile, login, logout, keycloak }) {
+  function sendAdminHello() {
+    get(keycloak, 'http://localhost:8080/admin/hello')
+      .then(function (text) {
+        alert(text)
+      })
+      .catch(function (error) {
+        if (error instanceof PermissionError) {
+          alert(error.message)
+        } else {
+          console.log(error)
+          alert('Network error')
+        }
+      })
+  }
+
+  function sendAdminUpHello() {
+    get(keycloak, 'http://localhost:8080/admin/upHello')
+      .then(function (text) {
+        alert(text)
+      })
+      .catch(function (error) {
+        if (error instanceof PermissionError) {
+          alert(error.message)
+        } else {
+          console.log(error)
+          alert('Network error')
+        }
+      })
+  }
+
+  function sendUserHello() {
+    get(keycloak, 'http://localhost:8080/user/hello')
+      .then(function (text) {
+        alert(text)
+      })
+      .catch(function (error) {
+        if (error instanceof PermissionError) {
+          alert(error.message)
+        } else {
+          console.log(error)
+          alert('Network error')
+        }
+      })
+  }
+
   return (
     <main className="AuthContainer-main">
       <div className="AuthContainer-token">
@@ -35,7 +82,32 @@ function AuthContainer({authenticated, token, refreshToken, profile, login, logo
       <div className="AuthContainer-action">
         {
           authenticated ?
-            <button className="AuthContainer-button" onClick={logout}>Logout</button> :
+            <>
+              {
+                keycloak.hasResourceRole('ADMIN', 'api-1') &&
+                <div>
+                  <button className="AuthContainer-button" onClick={sendAdminHello}>Send ADMIN Hello</button>
+                </div>
+              }
+              {
+                keycloak.hasResourceRole('ADMIN', 'api-1') &&
+                  keycloak.hasResourceRole('UP_ADMIN', 'api-2') &&
+                  <div>
+                    <button className="AuthContainer-button" onClick={sendAdminUpHello}>Send ADMIN Upstream Hello
+                    </button>
+                  </div>
+              }
+              {
+                keycloak.hasResourceRole('USER', 'api-1') &&
+                <div>
+                  <button className="AuthContainer-button" onClick={sendUserHello}>Send USER Hello</button>
+                </div>
+              }
+              <div>
+                <button className="AuthContainer-button" onClick={logout}>Logout</button>
+              </div>
+            </>
+            :
             <button className="AuthContainer-button" onClick={login}>Login</button>
         }
       </div>

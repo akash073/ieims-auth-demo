@@ -20,25 +20,35 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 @KeycloakConfiguration
 public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
     /**
-     * Registers KeycloakAuthenticationProvider with spring security's authentication manager
+     * Registers KeycloakAuthenticationProvider with spring security's authentication manager.
      */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authBuilder) {
         KeycloakAuthenticationProvider provider = keycloakAuthenticationProvider();
+
+        // Setting this so the adapter automatically adds ROLE_ prefix to roles defined in Keycloak
+        // Spring Security expects ROLE_ prefixes in all roles
         provider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
+
         authBuilder.authenticationProvider(provider);
     }
 
+    /**
+     * This is provided by the Keycloak adapter library.
+     */
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     public KeycloakClientRequestFactory keycloakClientRequestFactory;
 
+    /**
+     * Use Spring Boot native configuration for Keycloak.
+     */
     @Bean
     public KeycloakConfigResolver configResolver() {
         return new KeycloakSpringBootConfigResolver();
@@ -53,6 +63,9 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         return new NullAuthenticatedSessionStrategy();
     }
 
+    /**
+     * Global authorization configuration. Also, enables Spring Security CORS handling.
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
@@ -63,6 +76,9 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         http.cors();
     }
 
+    /**
+     * Provide CORS configuration for Spring Security. Allowing all origins and methods for now.
+     */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -73,6 +89,9 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         return source;
     }
 
+    /**
+     * Helpful template to call upstream service providers passing the access token.
+     */
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public KeycloakRestTemplate keycloakRestTemplate() {

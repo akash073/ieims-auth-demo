@@ -85,15 +85,17 @@ function AuthContainer({ authenticated, token, refreshToken, profile, login, log
             <>
               {
                 keycloak.hasResourceRole('ADMIN', 'api-1') &&
-                <>
-                  <div>
-                    <button className="AuthContainer-button" onClick={sendAdminHello}>Send ADMIN Hello</button>
-                  </div>
+                <div>
+                  <button className="AuthContainer-button" onClick={sendAdminHello}>Send ADMIN Hello</button>
+                </div>
+              }
+              {
+                keycloak.hasResourceRole('ADMIN', 'api-1') &&
+                  keycloak.hasResourceRole('UP_ADMIN', 'api-2') &&
                   <div>
                     <button className="AuthContainer-button" onClick={sendAdminUpHello}>Send ADMIN Upstream Hello
                     </button>
                   </div>
-                </>
               }
               {
                 keycloak.hasResourceRole('USER', 'api-1') &&

@@ -64,10 +64,13 @@ or similar frameworks, should register as a confidential client in Keycloak.
 
 This demo project has several folders:
 
-1. keycloak: contains shell script and data for running the official keycloak docker image.
-1. app-1: a front-end react application using `login-required` initialization option.
-1. app-2: a front-end react application using `check-sso` initialization option.
-1. api-1: a back-end spring-boot application with bearer-only access type. It has RESTful API endpoints.
+1. [keycloak](./keycloak/README.md): contains shell script and data for running the official keycloak docker image.
+1. [app-1](./app-1/README.md): a front-end react application using `login-required` initialization option.
+1. [app-2](./app-2/README.md): a front-end react application using `check-sso` initialization option.
+1. [api-1](./api-1/README.md): a back-end spring-boot application with bearer-only access type. It has RESTful API endpoints.
+1. [api-2](./api-2/README.md): a back-end spring-boot application with bearer-only access type. One some API calls
+	from the front-end, `api-1` sends an upstream REST call to `api-2` passing along the JWT access token received
+	from the front-end.
 
 Please refer to the README.md file in each folder to learn more about the components.
 
