@@ -18,6 +18,21 @@ function AuthContainer({ authenticated, token, refreshToken, profile, login, log
       })
   }
 
+  function sendAdminUpHello() {
+    get(keycloak, 'http://localhost:8080/admin/upHello')
+      .then(function (text) {
+        alert(text)
+      })
+      .catch(function (error) {
+        if (error instanceof PermissionError) {
+          alert(error.message)
+        } else {
+          console.log(error)
+          alert('Network error')
+        }
+      })
+  }
+
   function sendUserHello() {
     get(keycloak, 'http://localhost:8080/user/hello')
       .then(function (text) {
@@ -70,9 +85,15 @@ function AuthContainer({ authenticated, token, refreshToken, profile, login, log
             <>
               {
                 keycloak.hasResourceRole('ADMIN', 'api-1') &&
-                <div>
-                  <button className="AuthContainer-button" onClick={sendAdminHello}>Send ADMIN Hello</button>
-                </div>
+                <>
+                  <div>
+                    <button className="AuthContainer-button" onClick={sendAdminHello}>Send ADMIN Hello</button>
+                  </div>
+                  <div>
+                    <button className="AuthContainer-button" onClick={sendAdminUpHello}>Send ADMIN Upstream Hello
+                    </button>
+                  </div>
+                </>
               }
               {
                 keycloak.hasResourceRole('USER', 'api-1') &&

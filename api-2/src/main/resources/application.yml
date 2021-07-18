@@ -1,9 +1,12 @@
+server:
+  port: 9090
+
 keycloak:
   realm: development
   bearer-only: true
   auth-server-url: http://localhost:8000/auth
   ssl-required: external
-  resource: api-1
+  resource: api-2
   verify-token-audience: true
   use-resource-role-mappings: true
   confidential-port: 0
@@ -11,5 +14,5 @@ keycloak:
 
 logging:
   level:
-    ieims.api1: debug
+    ieims.api2: debug
     org.keycloak: debug
