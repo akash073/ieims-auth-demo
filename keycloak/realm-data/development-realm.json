@@ -245,7 +245,21 @@
         "containerId" : "fcdfe1ae-c590-4f97-a915-983684475225",
         "attributes" : { }
       } ],
-      "api-2" : [ ],
+      "api-2" : [ {
+        "id" : "a1b3cee0-1ad3-4cbb-9a89-abcb14d68357",
+        "name" : "UP_ADMIN",
+        "composite" : false,
+        "clientRole" : true,
+        "containerId" : "c4293ff1-c882-469e-a61e-f89dfc8f37fa",
+        "attributes" : { }
+      }, {
+        "id" : "2ab80c89-45ad-4213-9f16-72c02ce1ee77",
+        "name" : "UP_USER",
+        "composite" : false,
+        "clientRole" : true,
+        "containerId" : "c4293ff1-c882-469e-a61e-f89dfc8f37fa",
+        "attributes" : { }
+      } ],
       "api-1" : [ {
         "id" : "d3026685-b61f-462f-895f-4310294f2348",
         "name" : "USER",

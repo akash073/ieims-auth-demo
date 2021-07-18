@@ -24,6 +24,7 @@
     "requiredActions" : [ ],
     "realmRoles" : [ "default-roles-development" ],
     "clientRoles" : {
+      "api-2" : [ "UP_USER" ],
       "api-1" : [ "USER" ]
     },
     "notBefore" : 0,
@@ -52,6 +53,7 @@
     "requiredActions" : [ ],
     "realmRoles" : [ "default-roles-development" ],
     "clientRoles" : {
+      "api-2" : [ "UP_ADMIN" ],
       "api-1" : [ "ADMIN" ]
     },
     "notBefore" : 0,
