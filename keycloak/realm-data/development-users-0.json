@@ -9,6 +9,10 @@
     "emailVerified" : false,
     "firstName" : "Ananta",
     "lastName" : "Jalil",
+    "attributes" : {
+      "eiin" : [ "101" ],
+      "crvsId" : [ "30304025" ]
+    },
     "credentials" : [ {
       "id" : "d3348903-27b9-4878-8530-deffdbe914bd",
       "type" : "password",
@@ -33,6 +37,10 @@
     "emailVerified" : false,
     "firstName" : "Abdur",
     "lastName" : "Razzak",
+    "attributes" : {
+      "eiin" : [ "101" ],
+      "teacherId" : [ "20023" ]
+    },
     "credentials" : [ {
       "id" : "955c2a8b-6dc6-4bae-934c-d41e11281b0f",
       "type" : "password",
