@@ -40,3 +40,32 @@ fail to do this and the container is stopped for some reason, you will
 lose your modifications. The container is stopped if you stop it manually,
 stop the docker machine or shutdown your computer.
 
+## The Realm
+
+We have setup a realm named `development`. It defines four Keycloak
+clients:
+
+1. `app-1`: Front-end React app. Public access type.
+1. `app-2`: Front-end React app. Public access type.
+1. `api-1`: Back-end API server in Spring Boot. Bearer only access type.
+1. `api-2`: Back-end API server in Spring Boot. Bearer only aceess type.
+
+The two back-end applications have some *client roles* defined on them.
+
+The realm is also configured with a *client scope* named `ieims`. Basically
+it adds a few *user attributes* to the issued access tokens.
+
+### Users
+
+We have defined two users for the demo:
+
+1. `razzak`: Admin type user. Represents a teacher (institutional user).
+1. `ananta`: Non-admin type users. Represents a student.
+
+### User Attributres
+
+Each user has a few *user attributues* defined on them. These are `eiin`,
+`crvsId` and `teacherId`.
+
+The `ieims` client scope maps the user attributes to claims in the
+JWT tokens.
