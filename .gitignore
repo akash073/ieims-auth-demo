@@ -1,25 +1,40 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-node_modules
+### JS dependencies ###
+node_modules/
 .pnp
 .pnp.js
 
 # testing
-/coverage
+coverage/
 
 # production
-/build
+build/
 
 # misc
 .DS_Store
+
+### Env ###
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+### npm & yarn ###
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.idea
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Maven ###
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### VS Code ###
+.vscode/

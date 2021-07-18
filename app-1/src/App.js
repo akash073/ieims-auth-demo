@@ -29,6 +29,7 @@ function App() {
         authenticated,
         subject: kc.subject,
         token: kc.tokenParsed,
+        encodedToken: kc.token,
         refreshToken: kc.refreshTokenParsed
       })
 
@@ -63,7 +64,7 @@ function App() {
         <h1>Application 1</h1>
       </header>
 
-      <AuthContainer {...{...auth, profile, login, logout}}/>
+      <AuthContainer {...{...auth, profile, login, logout, keycloak}}/>
 
     </div>
   )
