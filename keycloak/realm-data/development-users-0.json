@@ -1,6 +1,28 @@
 {
   "realm" : "development",
-  "users" : [ {
+  "users" : [ 
+  {
+      "id": "af3cea9b-ca97-4cdc-8eed-da2f67dda387",
+      "username": "student",
+      "enabled": true,
+      "email": "student@smg.com",
+      "firstName": "Student",
+      "lastName": "Apprentice",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "student"
+        }
+      ],
+      "clientRoles": {
+        "backend-of-frontend-client": [ "LIBRARIAN" ],
+        "account": [
+          "view-profile",
+          "manage-account"
+        ]
+      }
+    },
+  {
     "id" : "5a9cf94e-8fbb-4f63-9663-3b44316fb7c4",
     "createdTimestamp" : 1626225924365,
     "username" : "ananta",
