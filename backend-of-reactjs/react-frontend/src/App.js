@@ -14,7 +14,7 @@ function App() {
     const [hidden, setHidden] = useState(false);
 
     useEffect(() => {
-        /*_axios.get(LOGIN_CHECK,{withCredentials: true})
+        _axios.get(LOGIN_CHECK,{withCredentials: true})
             .then(({ data }) => {
                 setHidden(false)
             })
@@ -22,7 +22,7 @@ function App() {
                 setHidden(true)
                 console.log("Error occured " + error);
                 }
-            )*/
+            )
 
 
     }, []);
