@@ -14,7 +14,7 @@ function App() {
     const [hidden, setHidden] = useState(false);
 
     useEffect(() => {
-        _axios.get(LOGIN_CHECK,{withCredentials: true})
+        /*_axios.get(LOGIN_CHECK,{withCredentials: true})
             .then(({ data }) => {
                 setHidden(false)
             })
@@ -22,7 +22,7 @@ function App() {
                 setHidden(true)
                 console.log("Error occured " + error);
                 }
-            )
+            )*/
 
 
     }, []);
@@ -44,7 +44,7 @@ function App() {
             }).catch((err) => {
             console.log(err);
         });*/
-        /*fetch(LIST_STUDENTS, {
+      fetch(LIST_STUDENTS, {
             method: "GET",
             credentials: 'include',
             headers: {
@@ -55,9 +55,9 @@ function App() {
             return response.json();
         }).then(function(muutuja){
             console.log(muutuja);
-        });*/
+        });
 
-        _axios.get(LIST_STUDENTS,{withCredentials: true})
+       /* _axios.get(LIST_STUDENTS,{withCredentials: true})
             .then(({ data }) => {
                 console.log(data);
             })
@@ -65,7 +65,7 @@ function App() {
                     alert('You are not authorize to view the content')
                     console.log("Error occured " + error)
                 }
-            )
+            )*/
 
         /* const config = {
              headers: {

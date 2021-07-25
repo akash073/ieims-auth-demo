@@ -83,7 +83,7 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
                 .antMatchers("/authenticate/**").hasAnyRole("LIBRARIAN","ADMIN")
                 .antMatchers("/login-check/**").hasAnyRole("LIBRARIAN","ADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/books/**").hasRole("LIBRARIAN")
+                .antMatchers("/books/**").authenticated()
                 .antMatchers("/logout").authenticated()
                 .anyRequest().denyAll()
                // .and().requestCache().requestCache(new CustomRequestCache())
