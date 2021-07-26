@@ -60,31 +60,15 @@ function App() {
   }
 
   function logout() {
-    console.log('in logout',keycloak?.refreshToken);
+    console.log('in logout',keycloak?.token);
     if (keycloak) {
       console.log('keycloak logout');
 
 
-      fetch('http://localhost:7070/oauth2/logout', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${keycloak?.refreshToken}`,
-          "Content-Type": "application/json",
-        //  credentials: 'include'
-        //  mode: 'no-cors'
-        }
-      }).then((response)=>{
-       // console.log(response);
-        if (response.ok) {
-          return response.text()
-        }
-      }).then(function (text) {
-        console.log(text)
-        keycloak.logout()
-      }).catch(function (error) {
-        console.log(error);
-        //keycloak.logout()
+     keycloak.logout().then(()=>{
+        window.location.href= "http://localhost:7070/logout";
       })
+     //
     }
   }
 
