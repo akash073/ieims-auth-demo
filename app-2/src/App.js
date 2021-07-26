@@ -60,7 +60,7 @@ function App() {
   }
 
   function logout() {
-    console.log('in logout',keycloak?.token);
+    console.log('in logout',keycloak?.refreshToken);
     if (keycloak) {
       console.log('keycloak logout');
 
@@ -68,8 +68,9 @@ function App() {
       fetch('http://localhost:7070/oauth2/logout', {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${keycloak?.token}`,
+          Authorization: `Bearer ${keycloak?.refreshToken}`,
           "Content-Type": "application/json",
+        //  credentials: 'include'
         //  mode: 'no-cors'
         }
       }).then((response)=>{

@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,36 +43,35 @@ public class AuthController {
     public @ResponseBody
     String logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
 
-       // CookieUtils.deleteAllCookie(request,response);
-        onLogoutSuccess(request,response,authentication);
+        CookieUtils.deleteAllCookie(request,response);
+        String refreshToken = getJwtFromRequest(request);
+        onLogoutSuccess(request,response,refreshToken);
         return "ok";
+    }
+
+    private String getJwtFromRequest(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7, bearerToken.length());
+        }
+        return null;
     }
 
 
     public void onLogoutSuccess(HttpServletRequest request,
-                                HttpServletResponse response, Authentication authentication)
+                                HttpServletResponse response, String refreshToken)
     {
-
-        OAuth2AuthenticationToken oauthToken =
-                (OAuth2AuthenticationToken) authentication;
-
-        OAuth2AuthorizedClient client =
-                clientService.loadAuthorizedClient(
-                        oauthToken.getAuthorizedClientRegistrationId(),
-                        oauthToken.getName());
-
-        String accessToken = client.getAccessToken().getTokenValue();
-        String refreshToken = client.getRefreshToken().getTokenValue();
-
+        String clientId = "api-3";
+        String clientSecret = "2652a05c-3b87-4a2e-9941-36428f3b2176";
         //  OidcUser user = (OidcUser) authentication.getPrincipal();
         String endSessionEndpoint =  "http://localhost:8000/auth/realms/development/protocol/openid-connect/logout";
 
         UriComponentsBuilder builder = UriComponentsBuilder //
                 .fromUriString(endSessionEndpoint) //
-                .queryParam("client_id", refreshToken)
+                .queryParam("client_id", clientId)
 
                 .queryParam("refresh_token",refreshToken)
-                .queryParam("client_secret", "2652a05c-3b87-4a2e-9941-36428f3b2176")
+                .queryParam("client_secret", clientSecret)
                 ;
 
         ResponseEntity<String> logoutResponse = getRestTemplate().getForEntity(builder.toUriString(), String.class);
