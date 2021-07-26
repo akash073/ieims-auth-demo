@@ -80,12 +80,10 @@ function App() {
       }).then(function (text) {
         console.log(text)
         keycloak.logout()
+      }).catch(function (error) {
+        console.log(error);
+        keycloak.logout()
       })
-
-   /*   keycloak.logout().then(()=>{
-        window.location.href= "http://localhost:7070/logout";
-      })*/
-     //
     }
   }
 

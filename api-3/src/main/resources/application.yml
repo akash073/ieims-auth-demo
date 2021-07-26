@@ -16,4 +16,4 @@ spring:
             issuer-uri: "http://localhost:8000/auth/realms/development"
 
 
-successUrl:  http://localhost:3000
+successUrl:  http://localhost:4000

@@ -1,4 +1,4 @@
-package ieims.api3.util;
+package ieims.api3;
 
 import org.springframework.util.SerializationUtils;
 
@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Base64;
 import java.util.Optional;
+
 
 public class CookieUtils {
 
