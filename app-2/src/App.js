@@ -4,6 +4,13 @@ import AuthContainer from './AuthContainer'
 
 import './App.css'
 
+import {
+  Route,
+  Switch
+} from 'react-router-dom';
+import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
+import PermissionError from "./PermissionError";
+
 const keycloakConfig = {
   url: 'http://localhost:8000/auth/',
   realm: 'development',
@@ -53,8 +60,32 @@ function App() {
   }
 
   function logout() {
+    console.log('in logout',keycloak?.token);
     if (keycloak) {
-      keycloak.logout()
+      console.log('keycloak logout');
+
+
+      fetch('http://localhost:7070/capitalize?input="akash"', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${keycloak?.token}`,
+          "Content-Type": "application/json",
+        //  mode: 'no-cors'
+        }
+      }).then((response)=>{
+       // console.log(response);
+        if (response.ok) {
+          return response.text()
+        }
+      }).then(function (text) {
+        console.log(text)
+        keycloak.logout()
+      })
+
+   /*   keycloak.logout().then(()=>{
+        window.location.href= "http://localhost:7070/logout";
+      })*/
+     //
     }
   }
 

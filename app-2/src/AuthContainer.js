@@ -19,7 +19,7 @@ function AuthContainer({ authenticated, token, refreshToken, profile, login, log
   }
 
   function sendAdminUpHello() {
-    get(keycloak, 'http://localhost:8080/admin/upHello')
+    get(keycloak, 'http://localhost:9090/upstream/admin/hello')
       .then(function (text) {
         alert(text)
       })
@@ -107,8 +107,16 @@ function AuthContainer({ authenticated, token, refreshToken, profile, login, log
                 <button className="AuthContainer-button" onClick={logout}>Logout</button>
               </div>
             </>
-            :
-            <button className="AuthContainer-button" onClick={login}>Login</button>
+            :(
+            <>
+
+              <button className="AuthContainer-button" onClick={login}>Login</button>
+
+              <a className="AuthContainer-button" href={'http://localhost:7070/oauth2/authorize'}>Oauth2 Login</a>
+            </>
+
+              )
+
         }
       </div>
     </main>

@@ -411,15 +411,15 @@
       "clientId": "api-3",
 	  "name" : "Oauth2 API 3",
       "description" : "Oauth2 Client in Spring Boot",
-      "rootUrl": "http://localhost:8080/",
-      "adminUrl": "http://localhost:8080/",
+      "rootUrl": "http://localhost:7070/",
+      "adminUrl": "http://localhost:7070/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "2652a05c-3b87-4a2e-9941-36428f3b2176",
       "redirectUris": [
-        "http://localhost:3000/*"
+        "http://localhost:7070/*"
       ],
       "webOrigins": [
       	 "*"
