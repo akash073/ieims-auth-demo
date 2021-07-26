@@ -1,0 +1,37 @@
+server:
+  port: 7070
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          boardreg:
+            client-id: "api-3"
+            client-name: "api-3"
+            client-secret: "2652a05c-3b87-4a2e-9941-36428f3b2176"
+            provider: "keycloak"
+        provider:
+          keycloak:
+            issuer-uri: "http://localhost:8000/auth/realms/development"
+
+
+
+
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+    # After successfully authenticating with the OAuth2 Provider,
+    # we'll be generating an auth token for the user and sending the token to the
+    # redirectUri mentioned by the client in the /oauth2/authorize request.
+    # We're not using cookies because they won't work well in mobile clients.
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
+      - myandroidapp://oauth2/redirect
+      - myiosapp://oauth2/redirect
+
+
+successUrl:  http://localhost:3000/oauth2/redirect
+failureUrl:  http://localhost:3000/oauth2/redirect
