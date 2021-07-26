@@ -65,7 +65,7 @@ function App() {
       console.log('keycloak logout');
 
 
-      fetch('http://localhost:7070/capitalize?input="akash"', {
+      fetch('http://localhost:7070/oauth2/logout', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${keycloak?.token}`,
@@ -82,7 +82,7 @@ function App() {
         keycloak.logout()
       }).catch(function (error) {
         console.log(error);
-        keycloak.logout()
+        //keycloak.logout()
       })
     }
   }
