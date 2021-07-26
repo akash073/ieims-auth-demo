@@ -14,9 +14,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy;
+import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.web.cors.CorsConfiguration;
@@ -58,12 +60,14 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     }
 
     /**
-     * Define session authentication strategy. As this is a bearer-only client, we
-     * are using the NullAuthenticatedSessionStrategy.
+     * Provide a session authentication strategy bean which should be of type
+     * RegisterSessionAuthenticationStrategy for public or confidential applications
+     * and NullAuthenticatedSessionStrategy for bearer-only applications.
      */
+    @Bean
     @Override
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-        return new NullAuthenticatedSessionStrategy();
+        return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
     }
 
     @Bean
@@ -86,7 +90,7 @@ public class KeycloakSecurityConfig extends KeycloakWebSecurityConfigurerAdapter
                 .antMatchers("/books/**").authenticated()
                 .antMatchers("/logout").authenticated()
                 .anyRequest().denyAll()
-               // .and().requestCache().requestCache(new CustomRequestCache())
+                .and().requestCache().requestCache(nullRequestCache())
 
                 .and()
                 .exceptionHandling().accessDeniedPage("/403")
