@@ -76,6 +76,14 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessHandler(new SimpleUrlLogoutSuccessHandler() {
 
+                    /**
+                     * Propagates logouts to Keycloak.
+                     *
+                     * Necessary because Spring Security 5 (currently) doesn't support
+                     * end-session-endpoints.
+                     * Details can be found
+                     * https://github.com/thomasdarimont/spring-boot-2-keycloak-oauth-example/blob/master/src/main/java/demo/SpringBoot2App.java
+                     */
                     @Override
                     public void onLogoutSuccess(HttpServletRequest request,
                                                 HttpServletResponse response, Authentication authentication)
