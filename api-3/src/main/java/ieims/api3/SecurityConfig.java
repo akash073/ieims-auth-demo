@@ -1,6 +1,7 @@
 package ieims.api3;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,16 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+
+    @Value("${spring.security.oauth2.client.registration.keycloak.client-id}")
+    private String clientId;
+    @Value("${spring.security.oauth2.client.registration.keycloak.client-secret}")
+    private String clientSecret;
+
+    @Value("${spring.security.oauth2.client.provider.keycloak.issuer-uri}")
+    private String issuerUrl;
+
 
     @Autowired
     private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
@@ -61,6 +72,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(oAuth2AuthenticationSuccessHandler)
                 .and()
                 .logout()
+                .logoutUrl("/logout")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessHandler(new SimpleUrlLogoutSuccessHandler() {
 
@@ -68,9 +80,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                     public void onLogoutSuccess(HttpServletRequest request,
                                                 HttpServletResponse response, Authentication authentication)
                             throws IOException, ServletException {
-
-                        String clientId = "api-3";
-                        String clientSecret = "2652a05c-3b87-4a2e-9941-36428f3b2176";
 
                         OAuth2AuthenticationToken oauthToken =
                                 (OAuth2AuthenticationToken) authentication;
@@ -80,19 +89,17 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         oauthToken.getAuthorizedClientRegistrationId(),
                                         oauthToken.getName());
 
-                        String accessToken = client.getAccessToken().getTokenValue();
+                        //String accessToken = client.getAccessToken().getTokenValue();
                         String refreshToken = client.getRefreshToken().getTokenValue();
 
                         //  OidcUser user = (OidcUser) authentication.getPrincipal();
-                        String endSessionEndpoint =  "http://localhost:8000/auth/realms/development/protocol/openid-connect/logout";
+                        String endSessionEndpoint =  issuerUrl + "/protocol/openid-connect/logout";
 
                         UriComponentsBuilder builder = UriComponentsBuilder //
                                 .fromUriString(endSessionEndpoint) //
                                 .queryParam("client_id", clientId)
-
-                                .queryParam("refresh_token",refreshToken)
                                 .queryParam("client_secret", clientSecret)
-                                ;
+                                .queryParam("refresh_token",refreshToken);
 
                         ResponseEntity<String> logoutResponse = getRestTemplate().getForEntity(builder.toUriString(), String.class);
                         if (logoutResponse.getStatusCode().is2xxSuccessful()) {
@@ -100,12 +107,10 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                         } else {
                             //log.info("Could not propagate logout to Keycloak");
                         }
-
-                        CookieUtils.deleteAllCookie(request,response);
-                        //new SecurityContextLogoutHandler().logout(request, null, null);
                         super.onLogoutSuccess(request, response, authentication);
                     }
                 })
+        .logoutSuccessUrl("/oauth2/logout")
 
         ;
 

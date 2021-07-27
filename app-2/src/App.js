@@ -66,7 +66,7 @@ function App() {
 
 
      keycloak.logout().then(()=>{
-        window.location.href= "http://localhost:7070/logout";
+        window.location.replace("http://localhost:7070/logout");
       })
      //
     }

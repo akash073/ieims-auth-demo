@@ -48,6 +48,10 @@ function AuthContainer({ authenticated, token, refreshToken, profile, login, log
       })
   }
 
+  function oauth2Login() {
+    window.location.replace("http://localhost:7070/oauth2/authorize");
+  }
+
   return (
     <main className="AuthContainer-main">
       <div className="AuthContainer-token">
@@ -112,7 +116,8 @@ function AuthContainer({ authenticated, token, refreshToken, profile, login, log
 
               <button className="AuthContainer-button" onClick={login}>Login</button>
 
-              <a className="AuthContainer-button" href={'http://localhost:7070/oauth2/authorize'}>Oauth2 Login</a>
+              <button className="AuthContainer-button AuthContainer-margin" onClick={oauth2Login}>Oauth2 Login</button>
+
             </>
 
               )

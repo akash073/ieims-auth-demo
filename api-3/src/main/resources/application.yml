@@ -12,7 +12,7 @@ spring:
     oauth2:
       client:
         registration:
-          boardreg:
+          keycloak:
             client-id: "api-3"
             client-name: "api-3"
             client-secret: "2652a05c-3b87-4a2e-9941-36428f3b2176"
