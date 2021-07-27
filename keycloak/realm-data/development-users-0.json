@@ -54,7 +54,8 @@
     "realmRoles" : [ "default-roles-development" ],
     "clientRoles" : {
       "api-2" : [ "UP_ADMIN" ],
-      "api-1" : [ "ADMIN" ]
+      "api-1" : [ "ADMIN" ],
+      "app-mvc" : [ "ADMIN" ]
     },
     "notBefore" : 0,
     "groups" : [ ]
