@@ -55,15 +55,9 @@ function App() {
   }
 
   function logout() {
-    console.log('in logout',keycloak?.token);
     if (keycloak) {
-      console.log('keycloak logout');
       Cookies.set('JSESSIONID');
-
-     keycloak.logout();/*.then(()=>{
-        window.location.replace("http://localhost:7070/oauth2/logout");
-      })*/
-     //
+      keycloak.logout();
     }
   }
 
