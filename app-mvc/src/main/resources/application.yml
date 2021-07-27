@@ -1,0 +1,18 @@
+server:
+  port: 5000
+
+keycloak:
+  realm: development
+  auth-server-url: http://localhost:8000/auth/
+  ssl-required: external
+  resource: app-mvc
+  use-resource-role-mappings: true
+  confidential-port: 0
+  principal-attribute: preferred_username
+  credentials:
+    secret: 84191fee-2e00-489b-9481-25b0e14fa402
+
+logging:
+  level:
+    ieims.appmvc: debug
+    org.keycloak: debug

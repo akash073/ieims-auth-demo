@@ -71,6 +71,7 @@ This demo project has several folders:
 1. [api-2](./api-2/README.md): a back-end spring-boot application with bearer-only access type. One some API calls
 	from the front-end, `api-1` sends an upstream REST call to `api-2` passing along the JWT access token received
 	from the front-end.
+1. [app-mvc](./app-mvc/README.md): an MVC application built using Spring MVC.
 
 Please refer to the README.md file in each folder to learn more about the components.
 
@@ -78,7 +79,7 @@ Please refer to the README.md file in each folder to learn more about the compon
 
 1. Docker must be installed
 1. Node.js (14+) and npm (6+) must be installed
-1. yarn (>= 1.22, < 2) is recommended
+1. yarn (>= 1.22, < 2) is highly recommended
 
 ## Running The Demo
 
@@ -113,8 +114,8 @@ realm, we have configured two client roles for the `api-1` client:
 
 We have configured the following users in the `development` realm:
 
-- razzak: has the client role ADMIN in client api-1
-- ananta: has the client role USER in client api-1
+- razzak: has the client role ADMIN in client api-1 and app-mvc
+- ananta: has the client role USER in client api-1 and app-mvc
 
 The passwords of the usres are the same as their usernames.
 
