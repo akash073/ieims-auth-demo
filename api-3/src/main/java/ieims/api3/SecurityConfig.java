@@ -61,7 +61,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
 
                 .authorizeRequests()
-                .antMatchers("/oauth2/logout**").permitAll()
+                .antMatchers("/oauth2/logout/**").permitAll()
                 .anyRequest().authenticated()
 
                 .and()

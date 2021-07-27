@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import Keycloak from 'keycloak-js'
 import AuthContainer from './AuthContainer'
+import Cookies from 'js-cookie';
+
 
 import './App.css'
 
@@ -56,11 +58,11 @@ function App() {
     console.log('in logout',keycloak?.token);
     if (keycloak) {
       console.log('keycloak logout');
+      Cookies.set('JSESSIONID');
 
-
-     keycloak.logout().then(()=>{
-        window.location.replace("http://localhost:7070/logout");
-      })
+     keycloak.logout();/*.then(()=>{
+        window.location.replace("http://localhost:7070/oauth2/logout");
+      })*/
      //
     }
   }

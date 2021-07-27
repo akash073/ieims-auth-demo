@@ -27,6 +27,9 @@ public class AuthController {
     @Value("${successUrl}")
     private String targetUrl;
 
+    @Value("${spring.security.oauth2.client.provider.keycloak.issuer-uri}")
+    private String issuerUrl;
+
     @GetMapping("/oauth2/authorize")
     public String  oauth2Authorize(HttpServletRequest request, HttpServletResponse response) {
         // CookieUtils.deleteAllCookie(request,response);
@@ -34,11 +37,12 @@ public class AuthController {
     }
 
     @GetMapping("/oauth2/logout")
-    public @ResponseBody
-    String logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+    public String logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException {
 
+        request.logout();
+        String endSessionEndpoint =  issuerUrl + "/protocol/openid-connect/logout?redirect_uri="+targetUrl;
         CookieUtils.deleteAllCookie(request,response);
-        return "ok";
+        return "redirect:" + endSessionEndpoint;
     }
 
 
