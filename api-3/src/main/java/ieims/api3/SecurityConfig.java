@@ -81,7 +81,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                      *
                      * Necessary because Spring Security 5 (currently) doesn't support
                      * end-session-endpoints.
-                     * Details can be found
+                     * Details can be found on
                      * https://github.com/thomasdarimont/spring-boot-2-keycloak-oauth-example/blob/master/src/main/java/demo/SpringBoot2App.java
                      */
                     @Override

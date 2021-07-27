@@ -4,13 +4,6 @@ import AuthContainer from './AuthContainer'
 
 import './App.css'
 
-import {
-  Route,
-  Switch
-} from 'react-router-dom';
-import OAuth2RedirectHandler from "./OAuth2RedirectHandler";
-import PermissionError from "./PermissionError";
-
 const keycloakConfig = {
   url: 'http://localhost:8000/auth/',
   realm: 'development',

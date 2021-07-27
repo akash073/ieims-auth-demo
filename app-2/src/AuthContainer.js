@@ -19,7 +19,7 @@ function AuthContainer({ authenticated, token, refreshToken, profile, login, log
   }
 
   function sendAdminUpHello() {
-    get(keycloak, 'http://localhost:9090/upstream/admin/hello')
+    get(keycloak, 'http://localhost:8080/admin/upHello')
       .then(function (text) {
         alert(text)
       })
