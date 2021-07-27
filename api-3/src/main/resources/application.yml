@@ -21,6 +21,5 @@ spring:
           keycloak:
             issuer-uri: "http://localhost:8000/auth/realms/development"
 
-
 successUrl:  http://localhost:4000
 

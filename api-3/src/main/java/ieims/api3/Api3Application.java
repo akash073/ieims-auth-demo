@@ -10,5 +10,4 @@ public class Api3Application {
 		SpringApplication.run(Api3Application.class, args);
 	}
 
-
 }

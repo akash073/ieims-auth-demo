@@ -46,9 +46,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .httpBasic()
                 .disable()
-
                 .authorizeRequests().anyRequest().authenticated()
-
                 .and()
                 .oauth2Login()
                 .authorizationEndpoint()
@@ -56,7 +54,5 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .successHandler(oAuth2AuthenticationSuccessHandler);
     }
-
-
 
 }
