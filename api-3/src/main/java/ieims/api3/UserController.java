@@ -17,10 +17,10 @@ public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping("/hello")
-    public String hello( HttpServletRequest request) {
-        //String name = principal.getName();
+    public String hello( Principal principal,HttpServletRequest request) {
+        String name = principal.getName();
 
-        return "Hello User: " ;
+        return "Hello User: " + name;
     }
 
 }
