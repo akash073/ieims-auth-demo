@@ -3,6 +3,7 @@ package ieims.api3;
 //import org.keycloak.KeycloakSecurityContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,7 @@ public class UserController {
 
     @GetMapping("/hello")
     public String hello( Principal principal,HttpServletRequest request) {
-        String name = principal.getName();
+        String name = (String) ((JwtAuthenticationToken) principal).getTokenAttributes().get("given_name");
 
         return "Hello User: " + name;
     }

@@ -6,7 +6,7 @@ server:
         name: JSESSIONID
         path: /
         http-only: false
-#spring.security.oauth2.client.provider.keycloak.jwk-set-uri
+#spring.security.oauth2.client.registration.keycloak.client-id
 spring:
   security:
     oauth2:
@@ -24,7 +24,7 @@ spring:
             #token-uri: http://localhost:8000/auth/realms/demo/protocol/openid-connect/token
             #user-info-uri: http://localhost:8000/auth/realms/demo/protocol/openid-connect/userinfo
             jwk-set-uri: "http://localhost:8000/auth/realms/development/protocol/openid-connect/certs"
-            user-name-attribute: "preferred_username"
+            #user-name-attribute: "preferred_username"
 
 successUrl:  http://localhost:4000
 
