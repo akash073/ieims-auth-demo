@@ -20,6 +20,11 @@ spring:
         provider:
           keycloak:
             issuer-uri: "http://localhost:8000/auth/realms/development"
+            #authorization-uri: http://localhost:8000/auth/realms/demo/protocol/openid-connect/auth
+            #token-uri: http://localhost:8000/auth/realms/demo/protocol/openid-connect/token
+            #user-info-uri: http://localhost:8000/auth/realms/demo/protocol/openid-connect/userinfo
+            jwk-set-uri: "http://localhost:8000/auth/realms/development/protocol/openid-connect/certs"
+            #user-name-attribute: preferred_username
 
 successUrl:  http://localhost:4000
 

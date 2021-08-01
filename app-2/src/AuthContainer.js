@@ -48,6 +48,21 @@ function AuthContainer({ authenticated, token, refreshToken, profile, login, log
       })
   }
 
+  function sendOauth2Hello() {
+    get(keycloak, 'http://localhost:7070/user/hello')
+        .then(function (text) {
+          alert(text)
+        })
+        .catch(function (error) {
+          if (error instanceof PermissionError) {
+            alert(error.message)
+          } else {
+            console.log(error)
+            alert('Network error')
+          }
+        })
+  }
+
   function oauth2Login() {
     window.location.replace("http://localhost:7070/oauth2/authorize");
   }
@@ -103,9 +118,17 @@ function AuthContainer({ authenticated, token, refreshToken, profile, login, log
               }
               {
                 keycloak.hasResourceRole('USER', 'api-1') &&
-                <div>
+                (
+                    <>
+                    <div>
                   <button className="AuthContainer-button" onClick={sendUserHello}>Send USER Hello</button>
-                </div>
+                    </div>
+                    <div>
+                      <button className="AuthContainer-button" onClick={sendOauth2Hello}>Send Oauth2 Hello</button>
+
+                    </div>
+                      </>
+                )
               }
               <div>
                 <button className="AuthContainer-button" onClick={logout}>Logout</button>
