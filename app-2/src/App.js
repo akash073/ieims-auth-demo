@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import Keycloak from 'keycloak-js'
 import AuthContainer from './AuthContainer'
-import Cookies from 'js-cookie';
-
 
 import './App.css'
 
@@ -56,7 +54,6 @@ function App() {
 
   function logout() {
     if (keycloak) {
-      Cookies.set('JSESSIONID');
       keycloak.logout();
     }
   }
