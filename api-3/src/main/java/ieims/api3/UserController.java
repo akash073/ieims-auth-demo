@@ -30,7 +30,7 @@ public class UserController {
     public String hello( Principal principal,HttpServletRequest request) {
         String name = (String) ((JwtAuthenticationToken) principal).getTokenAttributes().get("given_name");
 
-        return "Hello User: " + name;
+        return "Oauth2 response: Hello User: " + name;
     }
 
     @GetMapping("/upHello")
@@ -61,7 +61,7 @@ public class UserController {
             e.printStackTrace();
         }
 
-        return remoteValue;
+        return "Oauth2 response: " + remoteValue;
     }
 
 }
