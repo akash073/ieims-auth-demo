@@ -33,9 +33,6 @@ import java.util.List;
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
-
     @Value("${spring.security.oauth2.client.provider.keycloak.jwk-set-uri}")
     private String jwkSetUri;
 
