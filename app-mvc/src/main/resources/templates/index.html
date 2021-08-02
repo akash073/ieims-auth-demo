@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>App MVC</title>
+</head>
+<body>
+<h1>App MVC</h1>
+
+<p>
+    Hello. This is a Spring MVC application. This page is not protected.
+</p>
+
+<p>
+    Here is a <a th:href="@{/test}">Protected Page.</a>
+</p>
+
+<div th:if="${loggedIn}">
+    <p>
+        You are logged in as: <span th:text="${username}">Username</span>
+    </p>
+
+    <p>
+        Your name is: <span th:text="${fullName}">Full Name</span>
+    </p>
+</div>
+
+</body>
+</html>

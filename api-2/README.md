@@ -19,7 +19,7 @@ This application has the following API endpoints:
 
 ## How It Was Made
 
-We generated a started using `starter.spring.io` that only included
+We generated a starter using `starter.spring.io` that only included
 Spring Web and Spring Security. Then added the Keycloak Spring Boot
 starter in the `pom.xml`
 
